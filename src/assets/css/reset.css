@@ -1,0 +1,35 @@
+*{
+    margin: 0;
+    padding: 0;
+  }
+  html,body{
+    height: 100%;
+  }
+  body{
+    font-size: .7rem;
+    color: #666;
+  }
+  #app{
+    height: 100%;
+  }
+  a{
+    text-decoration: none;
+    color: #999;
+    font-size: .8rem;
+  }
+  .contents{
+    height: calc( 100% - 90px);
+   
+  }
+  .mint-navbar{
+    background: #26a2ff !important;
+  }
+  .mint-navbar .mint-tab-item a{
+    color: #ccc !important;
+  }
+  .skews-enter-active,.skews-leave-active{
+      transition: all .3s;
+  }
+  .skews-enter,.skews-leave-active{
+    transform: translateX(60%);
+}
