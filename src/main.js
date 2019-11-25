@@ -7,16 +7,32 @@ import 'mint-ui/lib/style.css'
 import store from './store'
 import rem from './utils/rem';
 import moment from 'moment'//导入文件 
+import lodash from 'lodash'
+import {toggleModal } from './utils/tools'
 
 Vue.prototype.moment = moment;//赋值使用
 
 Vue.use(Mint);
 Vue.config.productionTip = false;
 
+
+
 /**
  * 使用rem
  */
 rem(document,window);
+
+//获取用户信息
+let token=localStorage.getItem('appToken');
+
+if(token){
+  store.dispatch('user/req_getUser',(data)=>{
+      if(data.state===700004){
+        toggleModal(data.message);
+      }
+  })
+}
+
 
 /*
   登录拦截
@@ -24,8 +40,8 @@ rem(document,window);
 router.beforeEach((from, to, next) => {
 
    if (from.meta.requireAuth) { // 判断跳转的路由是否需要登录
-    
-       if (store.state.token) { // vuex.state判断token是否存在
+        // console.log(store._modules.root.state)
+       if (store._modules.root.state.user.token) { // vuex.state判断token是否存在
            next() // 已登录
        } else {
            next({
